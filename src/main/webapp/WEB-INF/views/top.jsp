@@ -54,7 +54,7 @@ function headerbarToggle(){
         <a class="menu" href="/rblist.do">후기 게시판</a>
         <a class="menu" href="/qnaList.do">이용 문의</a>
         <a class="menu" href="https://forms.gle/pXuxMHSjdb5edSr5A">펫시터 지원</a>
-	   	<a class="menu" style="width: 150px;" href="/ps_board_write.do?idx=${user.idx}">펫시터 게시글 작성</a>
+	   	<a class="menu" style="width: 150px;" href="ps_board/ps_boardWrite">펫시터 게시글 작성</a>
        	<div class="dot"></div>
    	</div>
    </nav>

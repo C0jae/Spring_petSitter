@@ -3,7 +3,7 @@
 	날짜 : 21.11.16
 	내용 : ps_board.xml의 sql문을 참고하여 변수선언
  */
-package com.jcpdev.petSitter.dao;
+package com.jcpdev.petSitter.service;
 
 
 import java.util.List;
@@ -15,7 +15,7 @@ import com.jcpdev.petSitter.model.Ps_board;
 import com.jcpdev.petSitter.model.R_board;
 import com.jcpdev.petSitter.model.Reservation;
 
-public interface Ps_boardMapper {
+public interface Ps_boardService {
 	int psb_insert(Ps_board ps_board);			// 펫시터 게시글저장
 	Ps_board psb_getList(int psb_idx);			// 게시글 불러오기
 	List<Pet> p_getList(int idx);				// 펫 리스트 불러오기 
