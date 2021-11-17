@@ -6,16 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>펫시터 게시글 작성</title>
-<link rel="stylesheet" href="../css/ps_boardWrite.css?v=3">
-<style type="text/css">
-</style>
+<link rel="stylesheet" href="../resources/css/ps_boardWrite.css?v=3">
 </head>
 <body>
-<%@ include file="../top.jsp" %>
+<header>
+	<%@ include file="top.jsp" %>
+</header>
+<hr>
 <br><br><br><br>
 <h1 style="color: #aabb97;">펫시터 게시글 작성</h1>
-<form method="post" action="./ps_board_save.do" enctype="multipart/form-data">
-	<input type="hidden" name="idx" value="${user.idx}">
+<form method="post" action="ps_boardSave" enctype="multipart/form-data">
+	<input type="hidden" name="idx" value="5">
 	<table style="height: 900px;">
 		<tr>
 			<th width="25%">제목</th>
@@ -23,12 +24,12 @@
 		</tr>
 		<tr>
 			<th width="25%">닉네임</th>
-			<td><input type="text" name="nick" class="input" required="required" readonly value="${petsitter.nick}"></td>
+			<td><input type="text" name="nick" class="input" required="required" readonly value="여름"></td>
 		</tr>
 		<tr>
 			<th>기본주소</th>
 			<td>
-				<input type="text" name="m_addr" class="input" required="required" value="${petsitter.m_addr}">
+				<input type="text" name="m_addr" class="input" required="required" value="충주시 호암수청1로">
 			</td>
 		</tr>
 		<tr>
@@ -42,11 +43,11 @@
 		<tr>
 			<th>견종</th>
 			<td width="20%">
-				<input type="checkbox" name="size" value="소형견">
+				<input type="checkbox" name="p_size" value="소형견">
 				<label for="small">소형견</label> (7kg 미만)
-				<input type="checkbox" name="size" value="중형견">
+				<input type="checkbox" name="p_size" value="중형견">
 				<label for="middle">중형견</label> (7kg 이상 15kg 미만)
-				<input type="checkbox" name="size" value="대형견">
+				<input type="checkbox" name="p_size" value="대형견">
 				<label for="big">대형견</label> (15kg 이상)
 			</td>
 		</tr>
@@ -72,21 +73,20 @@
 		<tr>
 			<th>사진</th>
 			<td>
-				<input type="file" name="pic" accept="image/*" multiple class="bn">
+				<input type="file" name="files" accept="image/*" multiple class="bn">
 			</td>
 		</tr>
 		<tr height="100">
 		 	<td colspan="2" align="center">
 			 	<button type="submit" value="저장" class="btn" ><span>저장</span></button>
 			 	<button type="reset"  value="다시쓰기" class="btn"><span>다시쓰기</span></button>
-			 	<button type="button" value="돌아가기" onclick="location.href='index.do'" class="btn"><span>돌아가기</span></button>
+			 	<button type="button" value="돌아가기" onclick="location.href='../'" class="btn"><span>돌아가기</span></button>
 		 	</td>
 		</tr>
 	</table>
 </form>
-
-<script>
-</script>
+<br><br><br><br>
+<%-- <%@ include file="footer.jsp" %> --%>
 
 </body>
 </html>

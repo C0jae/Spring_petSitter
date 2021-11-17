@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
 </style>
 
-<link rel= "stylesheet" href="./resources/css/top_bottom.css?v=3">
+<link rel= "stylesheet" href="../resources/css/top_bottom.css?v=3">
 <script>
 //HeaderToggle
 var prevScrollPos = window.pageYOffset;

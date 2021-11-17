@@ -23,6 +23,13 @@
 	
 	<context:component-scan base-package="com.jcpdev.petSitter" />
 	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10000000" />
+		<beans:property name="maxUploadSizePerFile" value ="2097152"/>
+		<beans:property name="maxInMemorySize" value="1048576"/>
+		<beans:property name="defaultEncoding" value="utf-8"/>
+   	</beans:bean>
 	
 	
 </beans:beans>
