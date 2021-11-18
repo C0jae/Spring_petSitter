@@ -27,7 +27,7 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	public int psb_insert(Ps_board ps_board) {
 		List<MultipartFile> files = ps_board.getFiles();
 		StringBuilder sb = new StringBuilder();
-		String path = "E:\\Program\\upload";
+		String path = "C:\\Users\\user\\Desktop\\upload";
 
 		if (files != null && files.size() > 0) {
 			for (MultipartFile f : files) {
@@ -48,8 +48,6 @@ public class Ps_boardServiceImpl implements Ps_boardService {
             }
 			ps_board.setG_fname(sb.toString());
          }
-		
-		System.out.println("게시글 : " + ps_board);
 		
 		return dao.psb_insert(ps_board);
 	}
@@ -73,30 +71,32 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	
 	@Override
 	public Ps_board psb_getList(int psb_idx) {
-		return null;
+		return dao.psb_getList(psb_idx);
 	}
 
 	@Override
 	public List<Pet> p_getList(int idx) {
-		return null;
+		return dao.p_getList(idx);
 	}
 
 	@Override
 	public Member m_getList(int idx) {
-		return null;
+		return dao.m_getList(idx);
 	}
 
 	@Override
 	public double rate(String ps_nick) {
-		return 0;
+		double rate = dao.rate(ps_nick);
+		double rate1 = rate * 10;
+		rate1 = ((double)Math.round(rate1))/10;
+		return rate1;
 	}
 
 	@Override
 	public String rateCnt(String ps_nick) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.rateCnt(ps_nick);
 	}
-
+	
 	@Override
 	public int psr_insert(Reservation reservation) {
 		return 0;
@@ -104,7 +104,6 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 
 	@Override
 	public int plusPoint(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -115,18 +114,16 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 
 	@Override
 	public int plusIncome(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public List<R_board> r_getList(String ps_nick) {
-		return null;
+		return dao.r_getList(ps_nick);
 	}
 
 	@Override
 	public int psb_update(Ps_board ps_board) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -138,6 +135,11 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	@Override
 	public String checkIncome() {
 		return null;
+	}
+
+	@Override
+	public Member ps_getList(int psb_idx) {
+		return dao.ps_getList(psb_idx);
 	}
 
 

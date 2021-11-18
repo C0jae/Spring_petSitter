@@ -29,5 +29,6 @@ public interface Ps_boardMapper {
 	List<R_board> r_getList(String ps_nick);	// 후기 리스트 불러오기 
 	int psb_update(Ps_board ps_board);			// 게시글 수정 
 	int psb_delete(int psb_idx);				// 게시글 삭제 
-	String checkIncome();
+	String checkIncome();						// 수익 불러오기
+	Member ps_getList(int psb_idx);				// 펫시터 정보 불러오기
 }

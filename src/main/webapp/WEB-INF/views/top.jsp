@@ -26,7 +26,7 @@ function headerbarToggle(){
 <header>
 <div id="headerbar" onscroll="headerbarToggle()"></div>
 
-   <a class="home" href="index.do">개잘돌봄</a>
+   <a class="home" href="home">개잘돌봄</a>
 <section>
 <c:if test="${sessionScope.readIdx==null }">
 <%  StringBuilder readIdx=new StringBuilder("/");
@@ -50,11 +50,11 @@ function headerbarToggle(){
 
    <nav class="navMenu">
    	<div style="display: flex;">
-        <a class="menu" href="/psSelect.do">펫시터 찾기</a>
+        <a class="menu" href="ps_boardRead">펫시터 찾기</a>
         <a class="menu" href="/rblist.do">후기 게시판</a>
         <a class="menu" href="/qnaList.do">이용 문의</a>
         <a class="menu" href="https://forms.gle/pXuxMHSjdb5edSr5A">펫시터 지원</a>
-	   	<a class="menu" style="width: 150px;" href="ps_board/ps_boardWrite">펫시터 게시글 작성</a>
+	   	<a class="menu" style="width: 150px;" href="ps_boardWrite">펫시터 게시글 작성</a>
        	<div class="dot"></div>
    	</div>
    </nav>

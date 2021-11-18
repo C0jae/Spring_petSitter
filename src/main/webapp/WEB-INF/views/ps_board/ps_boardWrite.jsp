@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>펫시터 게시글 작성</title>
-<link rel="stylesheet" href="../resources/css/ps_boardWrite.css?v=3">
+<link rel="stylesheet" href="./resources/css/ps_boardWrite.css?v=3">
 </head>
 <body>
 <header>
-	<%@ include file="top.jsp" %>
+	<%@ include file="../top.jsp" %>
 </header>
 <hr>
 <br><br><br><br>
@@ -43,7 +43,7 @@
 		<tr>
 			<th>견종</th>
 			<td width="20%">
-				<input type="checkbox" name="p_size" value="소형견">
+				<input type="checkbox" name="p_size" value="소형견" checked="checked">
 				<label for="small">소형견</label> (7kg 미만)
 				<input type="checkbox" name="p_size" value="중형견">
 				<label for="middle">중형견</label> (7kg 이상 15kg 미만)
@@ -73,14 +73,14 @@
 		<tr>
 			<th>사진</th>
 			<td>
-				<input type="file" name="files" accept="image/*" multiple class="bn">
+				<input type="file" name="files" accept="image/*" multiple class="bn" required="required">
 			</td>
 		</tr>
 		<tr height="100">
 		 	<td colspan="2" align="center">
 			 	<button type="submit" value="저장" class="btn" ><span>저장</span></button>
 			 	<button type="reset"  value="다시쓰기" class="btn"><span>다시쓰기</span></button>
-			 	<button type="button" value="돌아가기" onclick="location.href='../'" class="btn"><span>돌아가기</span></button>
+			 	<button type="button" value="돌아가기" onclick="location.href='home'" class="btn"><span>돌아가기</span></button>
 		 	</td>
 		</tr>
 	</table>

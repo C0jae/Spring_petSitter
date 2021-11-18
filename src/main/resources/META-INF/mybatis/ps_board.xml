@@ -26,16 +26,20 @@
 		select * from pet where idx = #{idx}
 	</select>
 	
+	<select id="ps_getList" parameterType="int" resultType="Member">	<!-- 펫시터 정보 불러오기 -->
+		select * from member where idx = (select idx from ps_board where psb_idx = #{psb_idx})
+	</select>
+	
 	<select id="m_getList" parameterType="int" resultType="Member">	<!-- 회원정보 불러오기 -->
 		select * from member where idx = #{idx}
 	</select>
 	
 	<select id="rate" parameterType="String" resultType="double">	<!-- 펫시터 평점 불러오기 -->
-		select avg(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick;
+		select avg(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick
 	</select>
 	
 	<select id="rateCnt" parameterType="String" resultType="String">	<!-- 펫시터 후기 게시판 갯수 불러오기 -->
-		select count(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick;
+		select count(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick
 	</select>
 	
 	<insert id="psr_insert" parameterType="Reservation">	<!-- 예약내역 저장하기 -->
@@ -44,15 +48,15 @@
 	</insert>
 	
 	<update id="plusPoint" parameterType="java.util.Map">	<!-- 펫시터 포인트 증가 -->
-		update member set point = point + #{money} where idx = #{idx};
+		update member set point = point + #{money} where idx = #{idx}
 	</update>
 	
 	<update id="minusPoint" parameterType="java.util.Map">	<!-- 예약자 포인트 감소 -->
-		update member set point = point - #{pay} where idx = #{idx};
+		update member set point = point - #{pay} where idx = #{idx}
 	</update>
 	
 	<insert id="plusIncome" parameterType="java.util.Map">	<!-- 거래에 대한 수수료 -->
-		insert into income value(#{idx}, now(), #{vat});
+		insert into income value(#{idx}, now(), #{vat})
 	</insert>
 	
 	<select id="r_getList" parameterType="String" resultType="R_board">	<!-- 후기게시판 불러오기 -->
