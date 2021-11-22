@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>펫시터 게시글</title>
-<link rel= "stylesheet" href="./resources/css/ps_board.css?v=3">
+<title>Insert title here</title>
+<link rel= "stylesheet" href="./resources/css/ps_board2.css?v=3">
 </head>
 <body>
 	<%@ include file = "../top.jsp" %>
@@ -73,7 +73,7 @@
 							<div class = "review3">
 								<div class = "review4"> <h4>${review.nick} 님</h4> </div>
 								<div class = "review5">
-									<c:forEach var="i" begin="1" end="${review.rate}"> ★ </c:forEach>
+									<c:forEach var="i" begin="1" end="${rate}"> ★ </c:forEach>
 								</div>
 							</div>
 							<div class = "review6"> <h5>${review.r_date}</h5> </div>
@@ -84,14 +84,14 @@
 		</div>
 		<div class = "main_right">
 			<div class = "reserveInfo">
-				<form method="post" name="reserve" action="ps_reserve">
+				<form action="post" name="reserve" action="./ps_reserve.do">
 					<c:if test="${user == null}">
 						<input type="hidden" name="state" value="notLogin">
 					</c:if>
 					<c:if test="${user != null}">
 						<input type="hidden" name="idx" value="${user.idx}">
 					</c:if>
-					<input type="hidden" name="ps_idx" value="${ps_board.idx}">
+					<input type="hidden" name="ps_idx" value="${ps_idx}">
 					<input type="hidden" name="psb_idx" value="${ps_board.psb_idx}">
 					
 					<h4>기간</h4>
@@ -101,7 +101,7 @@
 								<input type="date" class="dateBox" name="s_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}" onchange="sdate()" id="sdate">
 							</c:if>
 							<c:if test="${s_date != ''}">
-								<input type="hidden" name="s_date" value="<%-- ${s_date} --%>2021-11-21">
+								<input type="hidden" name="s_date" value="${s_date}">
 								${s_date}2021-11-19
 							</c:if>
 						</div>
@@ -111,7 +111,7 @@
 								<input type="date" class="dateBox" name="f_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}">
 							</c:if>
 							<c:if test="${f_date != ''}">
-								<input type="hidden" name="f_date" value="2021-11-20<%-- ${f_date} --%>">
+								<input type="hidden" name="f_date" value="${f_date}">
 								${f_date}2021-11-20
 							</c:if>
 						</div>
@@ -134,10 +134,10 @@
 							<div class="reserve6"> 중형견(7kg 이상 15kg 미만) : </div>
 							<div class="reserve6">
 								<c:if test="${p_size.contains('중형견')}">
-									<input type="text" onchange="money()" id="middle" name="middle" placeholder="마릿수입력(숫자만)"> <br>
+									<input type="text" onchange="money()" id="small" name="small" placeholder="마릿수입력(숫자만)"> <br>
 								</c:if>
 								<c:if test="${!p_size.contains('중형견')}">
-									<input type="text" onchange="money()" id="middle" name="middle" placeholder="선택불가" readonly> <br>
+									<input type="text" onchange="money()" id="small" name="small" placeholder="선택불가" readonly> <br>
 								</c:if>
 							</div>
 						</div>
@@ -145,10 +145,10 @@
 							<div class="reserve6"> 대형견(15kg 이상) : </div>
 							<div class="reserve6">
 								<c:if test="${p_size.contains('대형견')}">
-									<input type="text" onchange="money()" id="big" name="big" placeholder="마릿수입력(숫자만)"> <br>
+									<input type="text" onchange="money()" id="small" name="small" placeholder="마릿수입력(숫자만)"> <br>
 								</c:if>
 								<c:if test="${!p_size.contains('대형견')}">
-									<input type="text" onchange="money()" id="big" name="big" placeholder="선택불가" readonly> <br>
+									<input type="text" onchange="money()" id="small" name="small" placeholder="선택불가" readonly> <br>
 								</c:if>
 							</div>
 						</div>
@@ -248,8 +248,8 @@
 			
 			<div class="btnInfo">
 				<c:if test="${user.nick == petSitter.nick || user.admin == '1'}">
-					<a class="btn" href="psb_update?psb_idx=${ps_board.psb_idx}&nick=${petSitter.nick}">수정</a>
-					<a class="btn" href="psb_delete?psb_idx=${ps_board.psb_idx}" onclick="delCheck()">삭제</a>
+					<a class="btn" href="ps_boardUpdate.do?psb_idx=${ps_board.psb_idx}&nick=${petSitter.nick}">수정</a>
+					<a class="btn" href="ps_boardDelete.do?psb_idx=${ps_board.psb_idx}" onclick="delCheck()">삭제</a>
 				</c:if>
 			</div>
 			
@@ -309,8 +309,6 @@
 		    money = (small * 50000) + (middle * 65000) + (big * 80000);
 		    vat = money / 10;
 		    pay = money + vat;
-		    
-		    console.log(pay);
 		    
 		    document.getElementById("result").innerHTML = "합계금액 : " + pay + "원 (1박기준)";
 		    document.getElementById("result2").innerHTML = "비용 : " + money + "원";

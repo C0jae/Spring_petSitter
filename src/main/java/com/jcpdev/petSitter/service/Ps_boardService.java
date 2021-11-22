@@ -31,4 +31,8 @@ public interface Ps_boardService {
 	int psb_delete(int psb_idx);				// 게시글 삭제 
 	String checkIncome();						// 수익 불러오기
 	Member ps_getList(int psb_idx);				// 펫시터 정보 불러오기
+	
+	// 결제금액 산정
+	int calculate(String s_date, String f_date, String small, 
+			String middle, String big, int userPoint);
 }

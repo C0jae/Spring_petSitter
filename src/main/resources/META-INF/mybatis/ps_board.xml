@@ -34,7 +34,7 @@
 		select * from member where idx = #{idx}
 	</select>
 	
-	<select id="rate" parameterType="String" resultType="double">	<!-- 펫시터 평점 불러오기 -->
+	<select id="rate" parameterType="String" resultType="double">	<!-- 펫시터 평점 평균 불러오기 -->
 		select avg(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick
 	</select>
 	
