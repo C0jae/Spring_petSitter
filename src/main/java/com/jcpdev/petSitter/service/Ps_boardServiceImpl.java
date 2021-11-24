@@ -2,7 +2,6 @@ package com.jcpdev.petSitter.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,7 +31,8 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	public int psb_insert(Ps_board ps_board) {
 		List<MultipartFile> files = ps_board.getFiles();
 		StringBuilder sb = new StringBuilder();
-		String path = "C:\\Users\\user\\Desktop\\upload";
+		String path = "C:\\Users\\user\\Desktop\\upload";	// 윈도우용
+//		String path = "/Users/choiyoungjae/Desktop/program/workspace/upload";	// 맥용
 
 		if (files != null && files.size() > 0) {
 			for (MultipartFile f : files) {
@@ -40,8 +40,10 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 //				String fileName = "board_" + f.getOriginalFilename();   //원래 파일명
 				String fileName = "pet_" + randomString(f.getOriginalFilename());   //원래 파일명
 				if (!fileName.equals("")) {
-					newpath = path + "\\" + fileName;   //업로드경로+파일명
-					sb.append(fileName).append(",");
+					newpath = path + "\\" + fileName;   //업로드경로+파일명 -> 윈도우용
+//					newpath = path + "//" + fileName;   //업로드경로+파일명 -> 맥용
+//					sb.append(fileName).append(",");
+					sb.append(fileName);
 					// 선택한 파일을 서버로 전송
 					File upfile = new File(newpath);
 					try {
@@ -139,7 +141,8 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	public int psb_update(Ps_board ps_board) {
 		List<MultipartFile> files = ps_board.getFiles();
 		StringBuilder sb = new StringBuilder();
-		String path = "C:\\Users\\user\\Desktop\\upload";
+		String path = "C:\\Users\\user\\Desktop\\upload";		// 윈도우 경로
+//		String path = "/Users/choiyoungjae/Desktop/program/workspace/upload";	// 맥 경로
 
 		if (files != null && files.size() > 0) {
 			for (MultipartFile f : files) {
@@ -147,8 +150,10 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 //				String fileName = "board_" + f.getOriginalFilename();   //원래 파일명
 				String fileName = "pet_" + randomString(f.getOriginalFilename());   //원래 파일명
 				if (!fileName.equals("")) {
-					newpath = path + "\\" + fileName;   //업로드경로+파일명
-					sb.append(fileName).append(",");
+					newpath = path + "\\" + fileName;   //업로드경로+파일명 : 윈도우 경로
+//					newpath = path + "//" + fileName;   //업로드경로+파일명 : 맥 경로
+//					sb.append(fileName).append(",");
+					sb.append(fileName);
 					// 선택한 파일을 서버로 전송
 					File upfile = new File(newpath);
 					try {
@@ -213,6 +218,10 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 			return -1;
 		else if (small2 < 0 || middle2 < 0 || big2 < 0)
 			return -1;
+		
+		// 날짜 미입력
+		if (s_date.equals("") || f_date.equals(""))
+			return -4;
 		
 		try {
 			java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(s_date);

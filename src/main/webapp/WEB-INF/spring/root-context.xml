@@ -27,7 +27,11 @@
       <property name="mapperLocations">
          <list>
 
-            <value>classpath:META-INF/mybatis/ps_board.xml</value>         
+            <value>classpath:META-INF/mybatis/ps_board.xml</value>
+            <value>classpath:META-INF/mybatis/member.xml</value>         
+            <value>classpath:META-INF/mybatis/Petsitter.xml</value>
+            <value>classpath:META-INF/mybatis/petprofile.xml</value>         
+            <value>classpath:META-INF/mybatis/rboard.xml</value>         
          </list>
       </property>
    

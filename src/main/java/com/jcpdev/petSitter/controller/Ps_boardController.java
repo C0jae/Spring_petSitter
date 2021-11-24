@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.petSitter.model.Member;
@@ -40,9 +41,8 @@ public class Ps_boardController {
 	
 	// 게시글 작성화면 이동
 	@RequestMapping(value = "/ps_boardWrite", method = RequestMethod.GET)
-	public String ps_boardWrite(/* Model model, HttpSession session */) {
-		logger.info("펫시터 게시글 작성입니다.");
-//		model.addAttribute("user", session);
+	public String ps_boardWrite(Model model, @SessionAttribute("member") Member member) {
+		model.addAttribute("member", member);
 		return "ps_board/ps_boardWrite";
 	}
 	
@@ -50,13 +50,10 @@ public class Ps_boardController {
 	@RequestMapping(value="/ps_boardSave", method=RequestMethod.POST)
 	public String ps_boardSave(@ModelAttribute Ps_board ps_board, 
 			@RequestParam MultipartFile files, Model model) {
-		logger.info("펫시터 게시글 저장");
 		
 		if(!files.isEmpty()) {
 			ps_board.setG_fname(files.getOriginalFilename());
 		}
-		
-		logger.info("게시글저장 컨트롤러 : " + ps_board);
 		
 		service.psb_insert(ps_board);
 		
@@ -64,19 +61,16 @@ public class Ps_boardController {
 		String message2 = "펫정보 입력화면으로 이동합니다.";
 		model.addAttribute("message", message);
 		model.addAttribute("message2", message2);
-		model.addAttribute("url", "home");
+		model.addAttribute("url", "pet_insert");
 		
 		return "alert";
 	}
 	
 	// 게시글 불러오기
 	@RequestMapping(value="/ps_boardRead", method=RequestMethod.GET)
-	public String ps_boardRead(/* @RequestParam int psb_idx, int idx, */ Model model) {
+	public String ps_boardRead(@RequestParam int psb_idx, int idx, 
+			String s_date, String f_date, Model model) {
 		
-		// 게시글idx, 이용회원 idx, 시작일, 종료일 파라미터 받아서 넘겨주기
-		
-		int psb_idx = 18;
-		int idx = 5;		// 이용회원번호
 		Member petSitter = service.ps_getList(psb_idx);			// 펫시터 회원정보
 		Member user = service.m_getList(idx);					// 이용자 회원정보
 		Ps_board ps_board = service.psb_getList(psb_idx);		// 게시글 정보
@@ -95,6 +89,8 @@ public class Ps_boardController {
 		model.addAttribute("rateCnt", rateCnt);
 		model.addAttribute("review", review);
 		model.addAttribute("p_size", p_size);
+		model.addAttribute("s_date", s_date);
+		model.addAttribute("f_date", f_date);
 		
 		return "ps_board/ps_boardRead";
 	}
@@ -105,12 +101,11 @@ public class Ps_boardController {
 			String s_date, String f_date, String small, String middle, String big, 
 			Model model) {
 		
-		// 게시글 넘어갈때 idx, psb_idx, s_date, f_date 넘겨주기
-		
 		Reservation reservation = new Reservation();
 		
 		Member user = service.m_getList(idx);			// 이용자 회원정보
 		Member petSitter = service.m_getList(ps_idx);	// 펫시터 회원정보
+		Ps_board ps_board = service.psb_getList(psb_idx);
 		
 		int userPoint = user.getPoint();		// 이용자 보유 포인트
 		int psPoint = petSitter.getPoint();		// 펫시터 보유 포인트
@@ -121,7 +116,7 @@ public class Ps_boardController {
 		// 반려견 수 미입력 or 자연수가 아닌 수 입력
 		if (money == -1) {
 			String message ="맡기시는 반려견의 수를 정확히 입력해주세요.";
-			String url = "ps_boardRead";
+			String url = "ps_boardRead?idx=" + idx + "&psb_idx=" + psb_idx + "&s_date=" + s_date + "&f_date=" + f_date + "&g_fname=" + ps_board.getG_fname();
 			
 			model.addAttribute("message", message);
 			model.addAttribute("url", url);
@@ -131,7 +126,7 @@ public class Ps_boardController {
 		// 시작일 > 종료일
 		else if (money == -2) {
 			String message ="종료일이 시작일보다 빠릅니다. 다시 입력해주세요.";
-			String url = "ps_boardRead";
+			String url = "ps_boardRead?idx=" + idx + "&psb_idx=" + psb_idx + "&s_date=&f_date=&g_fname=" + ps_board.getG_fname();
 			
 			model.addAttribute("message", message);
 			model.addAttribute("url", url);
@@ -141,7 +136,17 @@ public class Ps_boardController {
 		// 이용자의 결제 포인트 부족
 		else if (money == -3) {
 			String message ="포인트가 부족합니다. 보유 포인트를 확인해 주세요.";
-			String url = "ps_boardRead";
+			String url = "ps_boardRead?idx=" + idx + "&psb_idx=" + psb_idx + "&s_date=" + s_date + "&f_date=" + f_date + "&g_fname=" + ps_board.getG_fname();
+			
+			model.addAttribute("message", message);
+			model.addAttribute("url", url);
+			
+			return "alert";
+		}
+		// 날짜 미입력
+		else if (money == -4) {
+			String message ="날짜를 입력해주세요";
+			String url = "ps_boardRead?idx=" + idx + "&psb_idx=" + psb_idx + "&s_date=&f_date=&g_fname=" + ps_board.getG_fname();
 			
 			model.addAttribute("message", message);
 			model.addAttribute("url", url);
@@ -194,8 +199,10 @@ public class Ps_boardController {
 		}
 	}
 	
+	// 게시글 수정화면 이동
 	@RequestMapping(value="/psb_update", method=RequestMethod.GET)
 	public String psb_update(@RequestParam int psb_idx, String nick, Model model) {
+		
 		Ps_board ps_board = service.psb_getList(psb_idx);
 		
 		model.addAttribute("ps_board", ps_board);
@@ -213,9 +220,11 @@ public class Ps_boardController {
 		
 		service.psb_update(ps_board);
 		
+		System.out.println("수정화면 게시글 idx : "+ps_board.getPsb_idx());
+		
 		String message = "수정이 완료되었습니다.";
 		model.addAttribute("message", message);
-		model.addAttribute("url", "ps_boardRead");
+		model.addAttribute("url", "ps_boardRead?psb_idx=" + ps_board.getPsb_idx() + "&idx=" + ps_board.getIdx());
 		model.addAttribute("psb_idx", ps_board.getPsb_idx());
 		
 		return "alert";

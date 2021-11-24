@@ -26,32 +26,24 @@ function headerbarToggle(){
 <header>
 <div id="headerbar" onscroll="headerbarToggle()"></div>
 
-   <a class="home" href="home">개잘돌봄</a>
+<a class="home" href='home'>개잘돌봄</a>
 <section>
-<c:if test="${sessionScope.readIdx==null }">
-<%  StringBuilder readIdx=new StringBuilder("/");
-	session.setAttribute("readIdx", readIdx);	
-%>
+<c:if test="${member ==null }">
+	<a class="login" href="login">로그인</a><br>
+	<a class="register" href="join?start=1">회원가입</a><br>
 </c:if>
- 	<c:if test="${sessionScope.user == null }">
-  		 <a class="login" href="login.do">로그인</a>
-   </c:if>
-   <c:if test="${sessionScope.user == null }">
-  		 <a class="register" href="register.do">회원가입</a>
-   </c:if>
-<c:if test="${sessionScope.user != null }">
-	<!-- 로그인된 상태 -->
-	<a class="mlist" href="list.do?">회원정보</a>
-	<a class="logout" href="logout.do">로그아웃</a>
-	<a class="infor">${user.nick}님  </a>
-	<a class="point"  href="point.do?idx=${user.idx}">포인트 : ${user.point} </a> 
+<c:if test="${sessionScope.member !=null }">
+<a class="mlist" href="detail">나의 정보</a><br>
+<a class="logout" href="logout">로그아웃</a><br>
+	<a class="infor">${member.nick}님  </a>
+	<a class="point"  href="updatepoint">포인트 : ${member.point} </a> 
 </c:if>
 </section>
 
    <nav class="navMenu">
    	<div style="display: flex;">
-        <a class="menu" href="ps_boardRead">펫시터 찾기</a>
-        <a class="menu" href="/rblist.do">후기 게시판</a>
+        <a class="menu" href="join">펫시터 찾기</a>
+        <a class="menu" href="rblist">후기 게시판</a>
         <a class="menu" href="/qnaList.do">이용 문의</a>
         <a class="menu" href="https://forms.gle/pXuxMHSjdb5edSr5A">펫시터 지원</a>
 	   	<a class="menu" style="width: 150px;" href="ps_boardWrite">펫시터 게시글 작성</a>

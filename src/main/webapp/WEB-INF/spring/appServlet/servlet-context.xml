@@ -14,7 +14,9 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/img/**" location="C:\Users\user\Desktop\upload"/>
+	<resources mapping="/img/**" location="/Users/choiyoungjae/Desktop/program/workspace/upload"/>
+	<!-- <resources mapping="/img/**" location="C:\Users\user\Desktop\upload"/> -->
+	<resources mapping="/css/**" location="/resources/css/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,6 +25,26 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.jcpdev.petSitter" />
+	
+	<beans:bean
+		class="com.jcpdev.petSitter.interceptor.UserInterceptor"
+		id="userInterceptor" />
+	<beans:bean
+		class="com.jcpdev.petSitter.interceptor.LoginInterceptor"
+		id="loginInterceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/**/**" />		 <!-- 경로 타입으로 url 2단계 지정. -->
+			<beans:ref bean="userInterceptor" /> <!-- 모든 url 요청에 적용할 인터셉터 -->
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/*" />
+			<mapping path="/ps_board/*" />
+			<exclude-mapping path="/member/join" />
+			<exclude-mapping path="/ps_boardWrite" />
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

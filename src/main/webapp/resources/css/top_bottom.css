@@ -131,7 +131,7 @@ body{
 }
 body::before{
         content: "";
-        background: url('../img/home_bg2.png');
+        background: url('../img/home_bg.png');
         background-size: cover;
         background-repeat: no-repeat;
         opacity: 0.15;

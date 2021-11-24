@@ -23,6 +23,7 @@ body {
 .main_right {
 	width: 400px;
 	padding-left: 20px;
+	min-width: 400px;
 }
 
 .title {
@@ -246,7 +247,10 @@ body {
 	margin-left: 20px;
 }
 
-
+input[type = text] {
+	border: 0px;
+	solid: black;
+}
 
 
 

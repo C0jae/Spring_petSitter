@@ -8,7 +8,3 @@
 		location.href='${url}'
 </script>
 <body>
-	<h1>alertTest</h1>
-	alert = ${message}
-	url = ${url}
-</body>

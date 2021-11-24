@@ -13,10 +13,11 @@
 	<%@ include file = "../top.jsp" %>
 	<br><br><br><br><br>
 	<div class = "img_container">
-		<c:set var = "fileArr" value = "${fn:split(ps_board.g_fname, ',')}"/>
+		<%-- <c:set var = "fileArr" value = "${fn:split(ps_board.g_fname, ',')}"/>
 		<c:forEach var = "img" items = "${fileArr}">
 			<img alt="gallery" src="/img/${img}" style="width: 800px; height: 400px;">
-		</c:forEach>
+		</c:forEach> --%>
+		<img alt="gallery" src="/upload/${ps_board.g_fname}" style="width: 800px; height: 400px;">
 		<hr>
 	</div>
 	<div class = "ps_boardMain">
@@ -101,8 +102,8 @@
 								<input type="date" class="dateBox" name="s_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}" onchange="sdate()" id="sdate">
 							</c:if>
 							<c:if test="${s_date != ''}">
-								<input type="hidden" name="s_date" value="<%-- ${s_date} --%>2021-11-21">
-								${s_date}2021-11-19
+								<input type="hidden" name="s_date" value="${s_date}">
+								${s_date}
 							</c:if>
 						</div>
 						<div class="reserve3"> ~ </div>
@@ -111,8 +112,8 @@
 								<input type="date" class="dateBox" name="f_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}">
 							</c:if>
 							<c:if test="${f_date != ''}">
-								<input type="hidden" name="f_date" value="2021-11-20<%-- ${f_date} --%>">
-								${f_date}2021-11-20
+								<input type="hidden" name="f_date" value="${f_date}">
+								${f_date}
 							</c:if>
 						</div>
 					</div>
@@ -162,7 +163,7 @@
 					</div><br>
 					
 					<div style="text-align: center;">
-						<c:if test="${user.idx != petSitter.idx}">
+						<c:if test="${member.idx != petSitter.idx}">
 							<input type="button" value="예약요청" class="rsvBtn" onclick="check()">
 						</c:if>
 					</div>
@@ -247,7 +248,7 @@
 			
 			
 			<div class="btnInfo">
-				<c:if test="${user.nick == petSitter.nick || user.admin == '1'}">
+				<c:if test="${member.nick == petSitter.nick || member.admin == '1'}">
 					<a class="btn" href="psb_update?psb_idx=${ps_board.psb_idx}&nick=${petSitter.nick}">수정</a>
 					<a class="btn" href="psb_delete?psb_idx=${ps_board.psb_idx}" onclick="delCheck()">삭제</a>
 				</c:if>
@@ -323,6 +324,7 @@
 			document.getElementById("startDate").innerHTML = sdate;
 		}
 	</script>
-
+	
+	<%-- <%@ include file="../footer.jsp" %> --%>
 </body>
 </html>

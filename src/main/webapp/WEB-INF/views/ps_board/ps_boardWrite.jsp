@@ -16,7 +16,7 @@
 <br><br><br><br>
 <h1 style="color: #aabb97;">펫시터 게시글 작성</h1>
 <form method="post" action="ps_boardSave" enctype="multipart/form-data">
-	<input type="hidden" name="idx" value="5">
+	<input type="hidden" name="idx" value="${member.idx}">
 	<table style="height: 900px;">
 		<tr>
 			<th width="25%">제목</th>
@@ -24,12 +24,12 @@
 		</tr>
 		<tr>
 			<th width="25%">닉네임</th>
-			<td><input type="text" name="nick" class="input" required="required" readonly value="여름"></td>
+			<td><input type="text" name="nick" class="input" required="required" readonly value="${member.nick}"></td>
 		</tr>
 		<tr>
 			<th>기본주소</th>
 			<td>
-				<input type="text" name="m_addr" class="input" required="required" value="충주시 호암수청1로">
+				<input type="text" name="m_addr" class="input" required="required" value="${member.m_addr}">
 			</td>
 		</tr>
 		<tr>
