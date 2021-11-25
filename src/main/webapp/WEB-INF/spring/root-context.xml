@@ -32,6 +32,8 @@
             <value>classpath:META-INF/mybatis/Petsitter.xml</value>
             <value>classpath:META-INF/mybatis/petprofile.xml</value>         
             <value>classpath:META-INF/mybatis/rboard.xml</value>         
+            <value>classpath:META-INF/mybatis/q_board.xml</value>         
+            <value>classpath:META-INF/mybatis/q_comment.xml</value>         
          </list>
       </property>
    

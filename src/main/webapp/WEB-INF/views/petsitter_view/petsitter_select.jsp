@@ -135,11 +135,11 @@ ul.mylist , ol.mylist  {
 			</div>
 			<div class="box2">
 				<div>
-				<input type="checkbox" name="terms" value="반려동물없음">반려동물없음 
-				<input type="checkbox" name="terms" value="픽업가능">픽업가능 
-				<input type="checkbox" name="terms" value="대형견가능">대형견가능 
-				<input type="checkbox" name="terms" value="마당있음">마당있음
-				<input type="checkbox" name="terms" value="노견케어">노견케어
+				<input type="checkbox" name="terms2" value="반려동물없음">반려동물없음  <!-- term2 -> terms2 -->
+				<input type="checkbox" name="terms2" value="픽업가능">픽업가능 			<!-- term2 -> terms2 -->
+				<input type="checkbox" name="terms2" value="대형견가능">대형견가능 	<!-- term2 -> terms2 -->
+				<input type="checkbox" name="terms2" value="마당있음">마당있음		<!-- term2 -> terms2 -->
+				<input type="checkbox" name="terms2" value="노견케어">노견케어		<!-- term2 -> terms2 -->
 				</div>
 			</div>
 			<div class="box3">
@@ -160,7 +160,7 @@ ul.mylist , ol.mylist  {
 	  		 <c:forEach var="cmt" items="${cmtlist }">
 				<div class = "container">
 					<div class = "thumbnail">
-						<a href = "ps_boardRead?idx=${cmt.idx}&psb_idx=${cmt.psb_idx}&s_date=${pageDto.wdate_start}&f_date=${pageDto.wdate_final}&g_fname=${cmt.g_fname}"><img alt = "gallery" src = "/upload/${cmt.g_fname}"></a>
+						<a href = "ps_boardRead?idx=${cmt.idx}&psb_idx=${cmt.psb_idx}&s_date=${s_date}&f_date=${s_date}&g_fname=${cmt.g_fname}"><img alt = "gallery" src = "/upload/${cmt.g_fname}"></a>
 						<!-- /img/는 url 경로와 c:\upload 매핑이 필욯ㅂ니다 -->
 						<strong>${cmt.title}</strong>			
 					</div>
@@ -194,35 +194,35 @@ ul.mylist , ol.mylist  {
 			<input type="hidden" name="m_addr" value="${pageDto.m_addr}"> <!-- 현재 detail로 돌아오기 위한 값 전달 -->
 			<input type="hidden" name="wdate_start" value="${pageDto.wdate_start }">
 			<input type="hidden" name="wdate_final" value="${pageDto.wdate_final }">
-			<input type="hidden" name="terms" value="${pageDto.terms }">
+			<input type="hidden" name="terms2" value="${pageDto.terms }">					<!-- term2 -> terms2 -->
 			<input type="submit" value="검색">
 		</form>
 		
-		<!-- 여기서 부터 추가 -->
+		<!-- 여기서 부터 그냥 복붙 -->
 		<c:if test="${pageDto.findText==null}">
-				 <a class="pagenum" href="?page=1&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">&lt;&lt;</a>
+				 <a class="pagenum" href="?page=1&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}">&lt;&lt;</a>
    	 		 <c:if test="${pageDto.currentPage !=1 }">
-        		 <a class="pagenum" href="?page=${pageDto.currentPage-1}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">&lt;</a>
+        		 <a class="pagenum" href="?page=${pageDto.currentPage-1}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}">&lt;</a>
      	 	</c:if>
       			<c:forEach var="i" begin="${pageDto.startPage}" end="${pageDto.endPage}">
-       	 			 <a class="pagenum" href="?page=${i}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">${i }</a>
+       	 			 <a class="pagenum" href="?page=${i}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}">${i }</a>
       			</c:forEach>
      		 <c:if test="${pageDto.currentPage !=pageDto.totalPage }">
-  	    		 <a class="pagenum" href="?page=${pageDto.currentPage+1 }&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">&gt;</a>
-  	    		 <a class="pagenum" href="?page=${pageDto.totalPage}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">&gt;&gt;</a>
+  	    		 <a class="pagenum" href="?page=${pageDto.currentPage+1 }&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}">&gt;</a>
+  	    		 <a class="pagenum" href="?page=${pageDto.totalPage}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}">&gt;&gt;</a>
    	  		</c:if>
 		</c:if>
 		 <c:if test="${pageDto.findText!=null}">
-   				 <a class="pagenum" href="?page=1&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&lt;&lt;</a>
+   				 <a class="pagenum" href="?page=1&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&lt;&lt;</a>
    	 		 <c:if test="${pageDto.currentPage !=1 }">
-        		 <a class="pagenum" href="?page=${pageDto.currentPage-1}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&lt;</a>
+        		 <a class="pagenum" href="?page=${pageDto.currentPage-1}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&lt;</a>
      	 	</c:if>
       			<c:forEach var="i" begin="${pageDto.startPage}" end="${pageDto.endPage}">
-       	 			 <a class="pagenum" href="?page=${i}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">${i }</a>
+       	 			 <a class="pagenum" href="?page=${i}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">${i }</a>
       			</c:forEach>
      		 <c:if test="${pageDto.currentPage !=pageDto.totalPage  }">
-  	    		 <a class="pagenum" href="?page=${pageDto.currentPage+1 }&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&gt;</a>
-  	    		 <a class="pagenum" href="?page=${pageDto.totalPage}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&gt;&gt;</a>
+  	    		 <a class="pagenum" href="?page=${pageDto.currentPage+1 }&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&gt;</a>
+  	    		 <a class="pagenum" href="?page=${pageDto.totalPage}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms2=${pageDto.terms}&findText=${pageDto.findText}&field=${pageDto.field}">&gt;&gt;</a>
    	  		</c:if>
    	  	</c:if>
 	</div>

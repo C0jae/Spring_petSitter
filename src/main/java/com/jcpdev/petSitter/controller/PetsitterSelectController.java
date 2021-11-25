@@ -46,27 +46,20 @@ public class PetsitterSelectController {
 		return "ps_board/ps_boardRead"; 
 	}
 	
-	@RequestMapping(value="/petsitter_select")
-	public String petList(@RequestParam Map<String, Object> param, 
-			@RequestParam(value="terms") String[] arr, Model model) { //String page,String field,String findText,Model model) {
+	@RequestMapping(value="/petsitter_select")		//★★★★★★★ 수정 밑에 매개변수 수정 ★★★★★★★
+	public String petList(String page,String m_addr,String wdate_start,String wdate_final,String[] terms2,String field,String findText,Model model) { 
 		logger.info("**PetSitter list 출력합니다.");
 		int pageNo;
-		if((String)param.get("page")==null) {
+		if(page==null) {			//수정
 			pageNo=1;
 		}else { 
-		pageNo = Integer.parseInt((String)param.get("page"));
+		pageNo = Integer.parseInt(page);			//수정
 		System.out.println(pageNo);
 		}
 		int pageSize =3;
 		
-		String findText = (String)param.get("findText");
-		String field=(String)param.get("field");
-		
-		String m_addr = (String)param.get("m_addr"); 
-	 	String wdate_start = (String)param.get("wdate_start");
-	 	String wdate_final = (String)param.get("wdate_final"); 
-	 	String terms = Arrays.toString(arr);
-	 	terms = terms.substring(1, terms.length()-1);
+		String terms = Arrays.toString(terms2);
+		terms = terms.substring(1, terms.length()-1);
 	 	
 	 	System.out.println(findText);
 	 	System.out.println(field);
@@ -74,10 +67,9 @@ public class PetsitterSelectController {
 	 	System.out.println(wdate_start);
 	 	System.out.println(wdate_final);
 	 	System.out.println(terms);
-	 	
-		//여기서부터 추가 
+	 
 	 	AdopttimeDto adopt = new AdopttimeDto(m_addr,wdate_start,wdate_final,terms,findText,field);
-		if(m_addr=="" && wdate_start=="" && wdate_final=="" && (terms==null||terms=="")  && findText==null && field==null ){ //전체 조회후 밑에 조회 하지않았을때
+		if(m_addr=="" && wdate_start=="" && wdate_final=="" && terms.equals("ul")  && findText==null && field==null ){ //전체 조회후 밑에 조회 하지않았을때
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_All(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -85,7 +77,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 			
-		}else if(m_addr=="" && wdate_start=="" && wdate_final=="" && terms=="" && findText!=null && field!=null ) { //전체 조회후 밑에 조회하였을때
+		}else if(m_addr=="" && wdate_start=="" && wdate_final=="" && terms.equals("ul") && findText!=null && field!=null ) { //전체 조회후 밑에 조회하였을때
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_All(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			System.out.println(pageDto);
@@ -95,7 +87,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 			
-		}else if(m_addr=="" && wdate_start!="" && wdate_final!="" && (terms==null||terms=="")  && findText==null && field==null){ //날짜만 조회하고 밑에 조회 안했을때
+		}else if(m_addr=="" && wdate_start!="" && wdate_final!="" && terms.equals("ul") && findText==null && field==null){ //날짜만 조회하고 밑에 조회 안했을때
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_Date(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -103,7 +95,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 			
-		}else if(m_addr=="" && wdate_start!="" && wdate_final!="" && terms=="" && findText!=null && field!=null) {	//날짜만 조회하고 밑에 조회 했을때
+		}else if(m_addr=="" && wdate_start!="" && wdate_final!="" && terms.equals("ul") && findText!=null && field!=null) {	//날짜만 조회하고 밑에 조회 했을때
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_Date(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -127,7 +119,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 		
-		}else if(m_addr!="" && wdate_start=="" && wdate_final=="" && (terms==null||terms=="")  && findText==null && field==null ){ //주소만 입력하고 밑에 조회를 하지않았을때
+		}else if(m_addr!="" && wdate_start=="" && wdate_final=="" && terms.equals("ul") && findText==null && field==null ){ //주소만 입력하고 밑에 조회를 하지않았을때
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_Adrr(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -135,7 +127,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 			
-		}else if(m_addr!="" && wdate_start=="" && wdate_final=="" && terms==""  && findText!=null && field!=null ) { //주소 조회후 밑에 조회하였을때
+		}else if(m_addr!="" && wdate_start=="" && wdate_final=="" && terms.equals("ul")  && findText!=null && field!=null ) { //주소 조회후 밑에 조회하였을때
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_Adrr(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -159,7 +151,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 			
-		}else if(m_addr!="" && wdate_start!="" && wdate_final!="" && (terms==null||terms=="") && findText==null && field==null) { //주소와 날짜만 기입했을때 조회후 밑에 조회를 하지않았을경우
+		}else if(m_addr!="" && wdate_start!="" && wdate_final!="" && terms.equals("ul") && findText==null && field==null) { //주소와 날짜만 기입했을때 조회후 밑에 조회를 하지않았을경우
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_Add_Date(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -167,7 +159,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 		
-		}else if(m_addr!="" && wdate_start!="" && wdate_final!="" && terms=="" && findText!=null && field!=null) {//주소와 날짜만 기입했을때 조회후 밑에 조회를 했을경우
+		}else if(m_addr!="" && wdate_start!="" && wdate_final!="" && terms.equals("ul") && findText!=null && field!=null) {//주소와 날짜만 기입했을때 조회후 밑에 조회를 했을경우
 			Petsitter_Select_PageDto pageDto = new Petsitter_Select_PageDto(pageNo,service.getCount_Add_Date(adopt),pageSize,m_addr,wdate_start,wdate_final,terms,findText,field);
 			int StartNo = pageDto.getStartNo();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo,findText,field);
@@ -209,6 +201,7 @@ public class PetsitterSelectController {
 			model.addAttribute("pageDto",pageDto);
 			model.addAttribute("cmtlist", cmts);
 		}
+		
 		return "petsitter_view/petsitter_select";
 	}  
 	 

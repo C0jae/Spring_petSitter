@@ -26,7 +26,7 @@ public class LoginController {
 		if(alert !=null && alert.equals("y")) {
 		model.addAttribute("message","로그인이 필요합니다.");  
 		model.addAttribute("url","login");
-		return "alertLogin";	
+		return "alert";	
 		}
 		
 		return "login";  

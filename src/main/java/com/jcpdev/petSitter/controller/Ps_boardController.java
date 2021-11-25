@@ -189,7 +189,7 @@ public class Ps_boardController {
 			
 			String message = "결제가 완료되었습니다.";
 			String message2 = "펫정보를 입력해주세요.";
-			String url = "home";
+			String url = "pet_insert";
 			
 			model.addAttribute("message", message);
 			model.addAttribute("message2", message2);
@@ -211,6 +211,7 @@ public class Ps_boardController {
 		return "ps_board/ps_boardUpdate";
 	}
 	
+	// 게시글 수정내용 저장
 	@RequestMapping(value="/psb_updateSave", method=RequestMethod.POST)
 	public String psb_updateSave(@ModelAttribute Ps_board ps_board, 
 			@RequestParam MultipartFile files, Model model) {
@@ -224,7 +225,7 @@ public class Ps_boardController {
 		
 		String message = "수정이 완료되었습니다.";
 		model.addAttribute("message", message);
-		model.addAttribute("url", "ps_boardRead?psb_idx=" + ps_board.getPsb_idx() + "&idx=" + ps_board.getIdx());
+		model.addAttribute("url", "ps_boardRead?psb_idx=" + ps_board.getPsb_idx() + "&idx=" + ps_board.getIdx() + "&s_date=&f_date=");
 		model.addAttribute("psb_idx", ps_board.getPsb_idx());
 		
 		return "alert";
