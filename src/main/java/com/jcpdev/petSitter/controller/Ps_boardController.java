@@ -121,7 +121,7 @@ public class Ps_boardController {
 			String url = "ps_boardRead?idx=" + idx + "&psb_idx=" + psb_idx + "&s_date=&f_date=&g_fname=" + ps_board.getG_fname();
 			
 			model.addAttribute("message", message);
-			model.addAttribute("url", url);
+			model.addAttribute("url", url);    
 			
 			return "alert";
 		}
