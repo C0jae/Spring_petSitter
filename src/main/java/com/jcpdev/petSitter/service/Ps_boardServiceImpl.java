@@ -76,16 +76,19 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	   }
 	   
 	
+	// 펫시터 게시글 불러오기
 	@Override
 	public Ps_board psb_getList(int psb_idx) {
 		return dao.psb_getList(psb_idx);
 	}
-
+	
+	// 펫 정보 불러오기
 	@Override
 	public List<Pet> p_getList(int idx) {
 		return dao.p_getList(idx);
 	}
 
+	// 회원정보 불러오기
 	@Override
 	public Member m_getList(int idx) {
 		return dao.m_getList(idx);
@@ -174,7 +177,9 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 	public int psb_delete(int psb_idx) {
 		return dao.psb_delete(psb_idx);
 	}
-
+	
+	
+	// 수익확인
 	@Override
 	public String checkIncome() {
 		return dao.checkIncome();
@@ -214,11 +219,6 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 		else
 			big2 = Integer.parseInt(big);
 		
-		if (small2 == 0 && middle2 == 0 && big2 == 0)
-			return -1;
-		else if (small2 < 0 || middle2 < 0 || big2 < 0)
-			return -1;
-		
 		// 날짜 미입력
 		if (s_date.equals("") || f_date.equals(""))
 			return -4;
@@ -255,6 +255,12 @@ public class Ps_boardServiceImpl implements Ps_boardService {
 		catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		if (small2 == 0 && middle2 == 0 && big2 == 0)
+			return -1;
+		else if (small2 < 0 || middle2 < 0 || big2 < 0)
+			return -1;
+		
 		
 		// 이용자의 포인트 부족
 		if (userPoint < pay)

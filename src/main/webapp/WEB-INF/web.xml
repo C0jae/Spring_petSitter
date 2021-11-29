@@ -45,13 +45,13 @@
 	   <url-pattern>*</url-pattern><!-- 모든 url요청에 대해 필터 적용한다.-->
 	</filter-mapping>
 	
-<!-- 	<error-page>
+	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/jsp/error/404page.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>	
 		<location>/WEB-INF/jsp/error/500page.jsp</location>
-	</error-page> -->
+	</error-page>
 	
 </web-app>

@@ -5,50 +5,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<style type="text/css">
-div {
-	width: 200px;
-	height: 200px;
-	background-color: white;color:white;
-	padding: 50px;
-	margin: 100px auto;
-}
-input{ 	padding: 7px;
-		margin: 15px auto; }
-input[type=text],input[type=password]{
-	border-radius: 4px; border: 2px solid #ccc;
-}
-input[type=submit], input[type=button] {
-	padding: 7px 15px;
-	margin: 7px 10px;
-	background:  #dcedc8;
-	color: white;
-	border: none;
-	cursor: pointer;
-	width:35%;
-	
-}
-</style>
-<link rel="stylesheet" href="resources/css/flexbox2.css?v=3">
+<link rel="stylesheet" href="./resources/css/login.css?v=3">
+<%@ include file="top.jsp" %>
 </head>
 <body>
-<div align="center">
+
 	<h1>로그인</h1>
+<div class="loginContainer">
 	<form method="post" action="login">
-	<table>
-		<input type="text" name="id" placeholder="아이디 입력하세요.">
-		<input type="password" name="password" placeholder="비밀번호 입력하세요.">
-		
+	<table class="loginTable">
 		<tr>
-			<td colspan="2" align="center">
+		<td><span>ID :</span><input type="text" name="id" placeholder="아이디를 입력하세요.">
+		</td>
+		</tr>
+		<tr>
+		<td><span>PW :</span>
+		<input type="password" name="password" placeholder="비밀번호 입력하세요.">
+		</td>
+		</tr>
+		<tr>
+			<td class="loginBtn" colspan="2" align="center">
 				<input type="submit" value="로그인">
-				
-				<input type="button" value="처음으로" 
-onclick="location.href='${pageContext.request.contextPath}'"/>
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}'"/>
 			</td>
 		</tr>
 	</table>
 	</form>
 </div>
+<%@ include file ="footer.jsp" %>
 </body>
 </html>

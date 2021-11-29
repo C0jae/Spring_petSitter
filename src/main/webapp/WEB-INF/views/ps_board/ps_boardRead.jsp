@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>펫시터 게시글</title>
 <link rel= "stylesheet" href="./resources/css/ps_board.css?v=3">
 </head>
-<body>
 	<%@ include file = "../top.jsp" %>
-	<br><br><br><br><br>
+<body>
 	<div class = "img_container">
 		<%-- <c:set var = "fileArr" value = "${fn:split(ps_board.g_fname, ',')}"/>
 		<c:forEach var = "img" items = "${fileArr}">
@@ -29,7 +29,7 @@
 				<div> <h4>${petSitter.nick} 펫시터님을 소개합니다.</h4> </div>
 				<div class = "content"> ${ps_board.content} </div>
 			</div>
-			<br><br>
+			<br>
 			
 			<div class = "petInfo">
 				<div> <h4>함께사는 반려동물</h4> </div>
@@ -86,12 +86,9 @@
 		<div class = "main_right">
 			<div class = "reserveInfo">
 				<form method="post" name="reserve" action="ps_reserve">
-					<c:if test="${user == null}">
-						<input type="hidden" name="state" value="notLogin">
-					</c:if>
-					<c:if test="${user != null}">
+					<%-- <c:if test="${user != null}">
 						<input type="hidden" name="idx" value="${user.idx}">
-					</c:if>
+					</c:if> --%>
 					<input type="hidden" name="ps_idx" value="${ps_board.idx}">
 					<input type="hidden" name="psb_idx" value="${ps_board.psb_idx}">
 					
@@ -204,7 +201,6 @@
 				</div>
 				<div>
 					<div id="map" class="map4"></div>
-	
 					<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1c1a7001aebc4f7972b7c7ba479ce8ac&libraries=services"></script> -->
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	86c0773d8189ca233acd039192c7bcd1&libraries=services"></script>
 					<script>
@@ -243,19 +239,20 @@
 						}
 					</script>
 				</div>
+	
 			</div>
 			<br>
-			
-			
+				
+				
 			<div class="btnInfo">
 				<c:if test="${member.nick == petSitter.nick || member.admin == '1'}">
 					<a class="btn" href="psb_update?psb_idx=${ps_board.psb_idx}&nick=${petSitter.nick}">수정</a>
 					<a class="btn" href="psb_delete?psb_idx=${ps_board.psb_idx}" onclick="delCheck()">삭제</a>
 				</c:if>
 			</div>
+		</div>
 			
-		</div>		
-	</div>
+	</div>		
 
 	 <script type="text/javascript">
 		function delCheck(){
@@ -325,6 +322,6 @@
 		}
 	</script>
 	
-	<%-- <%@ include file="../footer.jsp" %> --%>
 </body>
+<%@ include file="../footer.jsp" %>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@ include file="../top.jsp"%>
-	<section>
+	<section class="rbboardContainer">
 		<h2><!-- <img alt="" src="img/thumbsup.png" name="img" style="margin-top: 20px"> -->
 		이용자 후기 게시판</h2>
 		<div style="margin: auto;">
@@ -115,6 +115,6 @@
 </c:if>
 		
 	</section>
- <%-- <%@ include file="../bottom.jsp"%>  --%>
 </body>
+ <%@ include file="../footer.jsp"%>
 </html>

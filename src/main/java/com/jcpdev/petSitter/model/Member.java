@@ -26,4 +26,5 @@ public class Member {
 	private String license;
 	private int work_date;
 	private String home;
+	private String to;
 }

@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="terms", method = RequestMethod.GET)
+	public String terms() {
+		return "TermsOfService";
+	}
+	
 }

@@ -1,6 +1,8 @@
 package com.jcpdev.petSitter.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,23 +12,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.jcpdev.petSitter.model.Member;
 import com.jcpdev.petSitter.service.MemberService;
+import com.jcpdev.petSitter.service.Ps_boardService;
+
+
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-//@RequestMapping("/member")
 @SessionAttributes(names={"join"})
 public class MemberController {
 	
@@ -35,6 +42,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	Ps_boardService psService;
 	
 	@ModelAttribute(name="join")
 	public Member setJoin() {
@@ -57,19 +67,14 @@ public class MemberController {
 	
 	@RequestMapping(value="/join",params = "step=1")
 	public String join1(@ModelAttribute("join") Member member) {
-		logger.info("--" + member.getName());
-		logger.info("--" + member.getTel());
+		logger.info("--" + member.getTo());
 		return "/member/service_terms";
 	}
 	
 	@RequestMapping(value="/join",params = "step=2")
 	public String join2(@ModelAttribute("join") Member member) {
-		logger.info("--" + member.getName());
-		logger.info("--" + member.getTel());
-		
-		
-		if(member.getTel()== null && member.getName()==null)
-			return "redirect:join?start=1";
+		logger.info("--" + member.getTo());
+
 		return "/member/join";
 	}
 
@@ -79,53 +84,46 @@ public class MemberController {
 		service.insert(join);
 		logger.info("고객등록 완료 idx =" + join.getIdx());
 		status.setComplete();
-		return "/member/welcome";
+		return "/login";
 	}
 	
 	@RequestMapping(value="detail")
-	public String detail(@SessionAttribute("member") Member member) {
-			System.out.println("detail : " + member);
-			
-			return "/member/detail";
+	public String detail(@SessionAttribute("member") Member member, Model model) {
+		String income = psService.checkIncome();
+		model.addAttribute("income", income);
+		
+		return "/member/detail";
 	}
 	
-	@RequestMapping(value="update")
+	@RequestMapping(value="/update")
 	public String update(@SessionAttribute("member") Member member){
-	
-		return "/member/update";
+			return "/member/update";
 	}
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute Member mod_cus,Model model, 
-			@SessionAttribute("member") Member member, HttpSession session){
-		session.removeAttribute("member");
+	public ModelAndView save(@ModelAttribute Member mod_cus,Model model, HttpSession session){
 		
+		session.removeAttribute("member");
 		service.update(mod_cus);
 		mod_cus = service.selectOne(mod_cus.getIdx());
-		
 		session.setAttribute("member", mod_cus);
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("alert", "");
-		mv.addObject("member", mod_cus);
-		mv.setViewName("member/update");		//경로 안하면 오류. default 전달할 때와 다르니 주의
+		mv.addObject("member", mod_cus);   
+		mv.setViewName("redirect:detail");		//경로 안하면 오류. default 전달할 때와 다르니 주의
 		return mv;
 	}
 	@RequestMapping(value="updatepoint")
 	public String updatepoint(@SessionAttribute("member") Member member){
-		return "member/updatepoint";
+			return "/member/updatepoint";
 	}
 	
 	@RequestMapping(value="updatepoint", method = RequestMethod.POST)
-	public ModelAndView updatepoint(@ModelAttribute Member point, Model model,
-			@SessionAttribute("member") Member member ,HttpSession session){
+	public ModelAndView updatepoint(@ModelAttribute Member point, Model model, HttpSession session){
 		session.removeAttribute("member");
-		
 		service.updatepoint(point);
 		point = service.selectOne(point.getIdx());
-		
 		session.setAttribute("member", point);
-		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("alert", "");
 	    mv.addObject("member", point);

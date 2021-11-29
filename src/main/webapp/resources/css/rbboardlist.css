@@ -5,6 +5,11 @@
 /* body{
 	font-family: 'Gugi', cursive;
 } */
+.rbboardContainer{
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
 a.title:link { 
 	color: #4b70fd; 
 	text-decoration: none; 
@@ -17,24 +22,33 @@ a.title:visited {
 a.button {
 	font-family : 'Gugi', cursive;
 	text-decoration: none;
-	background-color: white;
-	color : gray;
+	background-color:	white;
+	color: black;
 	cursor : pointer;
 	text-align: center;
-	border : 1px solid gray;
-	border-radius: 4px;
+	border: 2px solid #aabb97;
 	padding : 10px 20px;
 	display: inline-block;
 	margin-left: auto;
+	border-radius: 5px;
+	transition: all 0.3s ease;	
 }
 
+
+a.button:hover{
+	background:	#aabb97;
+	color: white;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
 h2 {
 	font-family : 'Gugi', cursive;
 	font-size : 39px;
 	left : 100px;
 	top:30px;	
-	margin : auto;
-	padding : 80px;
+	margin-top: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px; 
 	height : 90px;
 	border-spacing: 15px;
 	text-align: center;
@@ -48,18 +62,19 @@ h2 > img {
 }
 
 ul {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size : 20px;
+	font-family : 'Gugi', cursive;
+	font-size : 15px;
 	list-style: none;
 }
 ul #main{
+	font-family : 'Gugi', cursive;
 		display:flex;
 		flex-direction:column;
-		
+		border-radius: 5px;
 }
 
 ul .mainrow {
-	background-color:#dfdfdf;
+	background-color: #aabb97;
 		display: flex;
 		flex-direction: row;     /* 기본값 */
 		border-top: 1px solid gray;
@@ -145,15 +160,17 @@ ul .row {
 	width: 100%;
 	height: 100%;
 	background-color: transparent;
-	 text-align: center;
+	text-align: center;
 }
 
 .searchdiv{
 	display:inline-block;
+	margin-top: 20px;
 	 width:470px;
-     height:42px;
+     height:45px;
      background-color: white;
-     border: 1px solid gray;
+     border: 2px solid #aabb97;
+     border-radius: 5px;
 }
 
 .field{
@@ -191,8 +208,11 @@ button[type=submit]{
     display: inline-block;
 	text-align:center;
 	font-size: 12pt;
-	color : #c8c8c8;
+	color : black;
 	background: white;
+	border: 2px solid #aabb97;
+	border-radius: 5px;
+	transition: all 0.3s ease;
 }
 .active{
 	font-family : 'Gugi', cursive;
@@ -202,12 +222,20 @@ button[type=submit]{
     display: inline-block;
 	text-align:center;
 	font-size: 12pt;
-	color : #c8c8c8;
+	color : black;
 	background: white;
-	border : 1px solid black;
-	border-radius: 2px;
+	border : 2px solid #aabb97;
+	border-radius: 5px;
+	transition: all 0.3s ease;
 }
 
+
+
+.pagenum:hover, .active:hover{
+	background:	#aabb97;
+	color: white;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
 
 
 .current {

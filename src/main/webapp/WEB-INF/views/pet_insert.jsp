@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>펫 정보 입력</title>
-<link rel= "stylesheet" href="resources/css/petsitter.css?v=3">
+<link rel= "stylesheet" href="resources/css/petinsert.css?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">

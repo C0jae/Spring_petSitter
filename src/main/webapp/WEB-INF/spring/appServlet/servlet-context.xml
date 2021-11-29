@@ -34,14 +34,18 @@
 		id="loginInterceptor" />
 	<interceptors>
 		<interceptor>
-			<mapping path="/**/**" />		 <!-- 경로 타입으로 url 2단계 지정. -->
-			<beans:ref bean="userInterceptor" /> <!-- 모든 url 요청에 적용할 인터셉터 -->
-		</interceptor>
-		<interceptor>
-			<mapping path="/member/*" />
-			<mapping path="/ps_board/*" />
-			<exclude-mapping path="/member/join" />
-			<exclude-mapping path="/ps_boardWrite" />
+			<mapping path="/*" />
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/home" />
+			<exclude-mapping path="/login" />
+			<exclude-mapping path="/join?start=1" />
+			<exclude-mapping path="/join" />
+			<exclude-mapping path="/rblist" />
+			<exclude-mapping path="/petsitter_select" />
+			<exclude-mapping path="/ps_boardRead" />
+			<exclude-mapping path="/q_list" />
+			<exclude-mapping path="/q_detail" />
+			<exclude-mapping path="/terms" />
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
 	</interceptors>

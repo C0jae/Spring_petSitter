@@ -1,42 +1,59 @@
 body {
-	width: auto;
+	width: 100%;
 }
-
 .img_container {
+	margin-top:300px;
 	text-align: center;
+	align-items: center;
 }
+	
 
 .ps_boardMain {
 	font-family: 'Gugi', cursive;
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-top:100px;
+	margin-bottom: 300px;	
 	display: flex;
+	margin-left: 100px;
+	margin-right: 100px;
 	justify-content: center;
-	width: auto;
+	/* width: min(90%,70.5rem); */
+	flex-wrap: wrap;
+	height: 100%;
 }
 
+.content{
+	margin-left: 15px;
+	border: 1px solid black;
+	border-radius: 12px;
+	padding: 20px;
+}
 .main_left {
-	width: 600px;
+	width: 40%;
 	padding-right: 20px;
+	flex-wrap: wrap;
 }
 
 .main_right {
-	width: 400px;
 	padding-left: 20px;
-	min-width: 400px;
+	width: 400px;
+	flex-wrap:wrap;
+	margin-bottom: 200px;
 }
 
 .title {
 	/* margin-right: 20px; */
+	width: 100%;
 }
 
 .petInfo {
 	/* margin-right: 20px; */
+	width: 100%;
 }
 
 .pet1 {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 }
 
 .pet2 {
@@ -57,6 +74,7 @@ body {
 
 .licenseInfo {
 	/* margin-right: 20px; */
+	width: 100%;
 }
 
 .license1 {
@@ -76,7 +94,7 @@ body {
 }
 
 .reviewInfo {
-	width:580px;
+	width: 100%;
 }
 
 .review1 {
@@ -224,6 +242,7 @@ body {
 .map4 {
 	width: 100%;
 	height: 350px;
+	z-index: -1;
 }
 
 .btnInfo {
@@ -251,8 +270,13 @@ input[type = text] {
 	border: 0px;
 	solid: black;
 }
-
-
-
+@media screen and (max-width:679px) {
+	.main_left {
+	margin-left: 100px;
+	margin-right: 100px;
+}
+	.ps_boardMain {
+	width: min(90%,70.5rem);
+}
 
 

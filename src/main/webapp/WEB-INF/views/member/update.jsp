@@ -5,26 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객 수정</title>
+<title>회원 정보 수정</title>
 <!-- 스타일 참고  -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/mupdate.css">
+	href="./resources/css/mupdate.css">
+<%@ include file="../top.jsp" %>
 </head>
 <body>
-<%@ include file="../top.jsp" %>
-	<c:if test="${alert != null }">
-		<script type="text/javascript">
-		alert('고객 정보가 수정되었습니다.!');
-	</script>
-	</c:if>
-	<div >
 		<form action="update" name="frmReg" method="post"
 			onsubmit="return validCheck()">
-			<input type="hidden" name="idx" value="${member.idx}" >  
 			<!--브라우저에 출력은 안되고 파라미터로 필요한값은 type을 hidden으로 한다. -->
-			<table >
+			<table class="updateTable">
 				<tr>
-				<td><label>회원 수정</label><td>
+				<td><label>회원 정보 수정</label><td>
+			<input type="hidden" name="idx" value="${member.idx}" >  
 				</tr>  <!-- 이메일 , 지역 -->
 				<tr>
 					<td><label>이름</label></td>
@@ -56,7 +50,6 @@
 				</tr>
 			</table>
 		</form>
-	</div>
 	<div id="myModal" class="modal">
 			<span class="close">&times;</span><br>
 			<div style="padding: 0px 20px; color:red;" >
@@ -72,6 +65,11 @@
 				</form>
 			</div>
 	</div>
+	<c:if test="${alert != null }">
+		<script type="text/javascript">
+		alert('고객 정보가 수정되었습니다.!');
+	</script>
+	</c:if>
 	<script>
 	var modal = document.getElementById('myModal');
 	var span = document.getElementsByClassName("close")[0];
@@ -99,4 +97,5 @@
 	}
 </script>
 </body>
+<%@ include file="../bottom.jsp" %>
 </html>

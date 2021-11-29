@@ -1,126 +1,82 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
 
-:root{
-	--dark-green: #aabb97;
-    --light-green: #dcedc8;
-    --darker-green: #94af76;
+@import
+	url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
+:root { 
+	--dark-green: #aabb97; 
+	--light-green: #dcedc8; 
+	--darker-green: #94af76;
 }
 
 
-@media screen and (max-width:768px) {
-   .row {
-       display:flex;
-        flex-direction: column;
-    }
-  
+.memberDetail {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 120px;
+	flex-direction: column;
 }
-.name{
+
+.detail {
 	font-family: 'Gugi', cursive;
-	color : var(--darker-green);
+	color: black;
+	background-color: var(--light-green);
+	padding: 5px;
 	font-size: 1.4em;
-	position: absolute;
-  	left: 300px;
-  	top: 200px;
-  	margin : auto;
-	padding : 100px;
-	padding-left : 150px;
-	padding-right : 150px;
-  	background-color : var(--light-green);
-  	border-radius : 5px;
+	text-align: center;
+	border-radius: 5px;
+	list-style: none;
+	margin-top: 50px;
 }
-.nick{
+
+.detailButtons {
 	font-family: 'Gugi', cursive;
-	color :var(--darker-green);
-	font-size: 1.4em;
-	position: absolute;
-  	left: 800px;
-  	top: 200px;
-  	margin-left: -30px ;
-	padding : 100px;
-  	background-color : var(--light-green);
-  	border-radius : 5px;
+	font-size: 1.3em;
+	display: flex;
+	flex-direction: row;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 150px;
 }
-.poin{
-	font-family: 'Gugi', cursive;
-	color :var(--darker-green);
-	font-size: 1.4em;
-	position: absolute;
-  	left: 800px;
-  	top: 500px;
-  	margin : auto;
-	padding : 100px;
-		margin-left: -30px ;
-		margin-top: -30px ;
-  	background-color : var(--light-green);
-  	border-radius : 5px;
+
+.detailButtons li {
+	list-style: none;
 }
-.tel{
-	font-family: 'Gugi', cursive;
-	color :var(--darker-green);
-	font-size: 1.4em;
-	position: absolute;
-  	left: 300px;
-  	top: 500px;
-  	margin : auto;
-	padding : 100px;
-	margin-top: -30px ;
-  	background-color : var(--light-green);
-  	border-radius : 5px;
-}
-a.mup{
-	font-family: 'Gugi', cursive;
-	font-size : 1.3em;
-	position: absolute;
-	right : 300px;
-	top: 250px;	
-	background-color: #aabb97; 
- 	border: none;
+
+.detailButtons li a {
+	transition-duration: 0.4s;
+	border-radius: 4px;
+	padding: 5px;
+	cursor: pointer;
 	color: white;
-	   text-align: center;
-	   display: inline-block;
-	   margin: 4px 2px;
-	   transition-duration: 0.4s;
-	   cursor: pointer;
-	   padding: 50px;
-	   border-radius: 4px;
-	   text-decoration: none;
-}
-a.mup{
-   background-color: #aabb97;
-   color: black; 
-   border: 2px solid #aabb97;
-}
-a.mup:hover {
-   background-color: white;
-   color: black;
-   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
-}
-a.mupo{
-	font-family: 'Gugi', cursive;
-	font-size : 1.3em;
-	position: absolute;
-	right : 300px;
-	top:520px;	
+	text-align: center;
+	border: none;
+	background-color: #aabb97;
+	margin-left: 20px;
+	margin-right: 20px;
 	text-decoration: none;
-	background-color: #aabb97; 
-   border: none;
-   color: white;
-   text-align: center;
-   display: inline-block;
-   margin: 4px 2px;
-   transition-duration: 0.4s;
-   cursor: pointer;
-   padding: 50px;
-   border-radius: 4px;
 }
-a.mupo{
-   background-color: #aabb97;
-   color: black; 
-   border: 2px solid #aabb97;
+
+.detailButtons li a:hover {
+	background-color: white;
+	color: black;
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.24), 0 3px 3px 0
+		rgba(0, 0, 0, 0.19);
+	border: 2px solid #aabb97;
 }
-a.mupo:hover {
- background-color: white; 
-   color: black;
-   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
-}
+/*a.mup {
+	font-family: 'Gugi', cursive;
+	font-size: 1.3em;
+	background-color: #aabb97;
+	border: none;
+	color: white;
+	text-align: center;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 4px;
+	text-decoration: none;
+}*/

@@ -72,7 +72,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int NickCheck(String nick) {
-		int cnt= dao.IdCheck(nick);
+		int cnt= dao.NickCheck(nick);
 		return cnt;
 	}
 	

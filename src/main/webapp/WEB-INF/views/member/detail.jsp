@@ -6,44 +6,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Day3[]- db 회원 등록</title>
-<style>
-	ul{
-		list-style: none;
-		padding-inline-start:0px;  /* 목록 들여쓰기 없애기 */
-	}
-	ul #name{
-		padding : 5px  20px;
-		margin : 5px 0px;
-		background-color: tomato;
-		color:white;
-	}
-	li {
-		padding : 5px  20px;
-	}
-</style>
+<title>회원 정보</title>
 <link rel="stylesheet" href="./resources/css/mup.css?v=3"> 
 </head>
+<%@ include file="../top.jsp" %>
 <body>
-<header><%@ include file="../top.jsp" %></header>
 
 <input type="hidden" name="idx" value="${member.idx}" >  
-	<div class="topbar"></div>
-	<table style="width: 100%">
-	<tr>
-		<td class="name" id="name">이름 : ${member.name }님</td>
-		<td class="nick">닉네임 : ${member.nick}</td>
-		<td class="tel">전화번호 : ${member.tel}</td>
+	<ul class="memberDetail">
+		<li class="detail" id="name">이름 : ${member.name }님</li>
+		<li class="detail">닉네임 : ${member.nick}</li>
+		<li class="detail">전화번호 : ${member.tel}</li>
 		<c:if test="${member.idx != 1}">
-			<td class="poin">보유포인트 : ${member.point }</td>
+			<li class="detail">보유포인트 : ${member.point }</li>
 		</c:if>
-		<c:if test="${member.idx == 1}">
-			<td class="poin">총 수익 : ${income}원</td>
+		<c:if test="${member.admin == 1}">
+			<li class="detail">총 수익 : ${income}원</li>
 		</c:if>
-	</tr>
-	</table>
- 	<a class="mup" href="update">정보 수정</a>
- 	<a class="mupo" href="../">돌아가기</a>
+	</ul>
+	<ul class="detailButtons">
+	<li><a class="mup" href="update">정보 수정</a></li>
+	<li><a class="mupo" href="home">돌아가기</a></li>
+	</ul>	
+ 	
+ 	
 
+<div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
 </body>
+<%@ include file="../footer.jsp" %>
+
 </html>

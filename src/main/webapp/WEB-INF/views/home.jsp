@@ -18,7 +18,7 @@
 	<div class="main-msg"> 이름값 하나는 제대로 하는 <br><span style="color: #94af76;">개잘돌봄</span></div>
 </div>
 <div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 </section>
 <%@ include file="footer.jsp" %>
