@@ -68,8 +68,13 @@
 <header>
 <%@ include file="../top.jsp" %>
 </header>
+<<<<<<< HEAD
 <section class="qnaBoard" style="height:120%">
 <h3>Q&A 게시판</h3>
+=======
+<section>
+<h3>qna 게시판</h3>
+>>>>>>> refs/remotes/origin/master
 <hr>
  <table style="width:80%;margin:auto;">
  	<tr><td width="20%" class="td1">제목</td>

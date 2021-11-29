@@ -162,7 +162,11 @@ ul.mylist , ol.mylist  {
 	  		 <c:forEach var="cmt" items="${cmtlist }">
 				<div class = "container">
 					<div class = "thumbnail">
+<<<<<<< HEAD
 						<a href = "ps_boardRead?psb_idx=${cmt.psb_idx}&s_date=${s_date}&f_date=${s_date}&g_fname=${cmt.g_fname}"><img alt = "gallery" src = "/upload/${cmt.g_fname}"></a>
+=======
+						<a href = "ps_boardRead?idx=${cmt.idx}&psb_idx=${cmt.psb_idx}&s_date=${s_date}&f_date=${s_date}&g_fname=${cmt.g_fname}"><img alt = "gallery" src = "/upload/${cmt.g_fname}"></a>
+>>>>>>> refs/remotes/origin/master
 						<!-- /img/는 url 경로와 c:\upload 매핑이 필욯ㅂ니다 -->
 						<strong>${cmt.title}</strong>			
 					</div>

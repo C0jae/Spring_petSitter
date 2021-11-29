@@ -30,6 +30,7 @@
 		</c:if>
 	</section>
 
+<<<<<<< HEAD
 	<nav class="navMenu">
 		<div class="nav-links">
 			<a href="join">펫시터 찾기</a> 
@@ -115,3 +116,17 @@
 </script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+=======
+   <nav class="navMenu">
+   	<div style="display: flex;">
+        <a class="menu" href="join">펫시터 찾기</a>
+        <a class="menu" href="rblist">후기 게시판</a>
+        <a class="menu" href="q_list">이용 문의</a>
+        <a class="menu" href="https://forms.gle/pXuxMHSjdb5edSr5A">펫시터 지원</a>
+	   	<a class="menu" style="width: 150px;" href="ps_boardWrite">펫시터 게시글 작성</a>
+       	<div class="dot"></div>
+   	</div>
+   </nav>
+   
+</header>
+>>>>>>> refs/remotes/origin/master

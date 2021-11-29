@@ -88,7 +88,7 @@
 			<tr>
 				<td colspan="2" style="text-align: center">
 				<input type="submit" value="가입하기"> 
-				<input type="reset" value="다시쓰기"></td>
+				<input type="reset" value="다시쓰기"></td>   
 			</tr>
 		</table>		
 	</form>

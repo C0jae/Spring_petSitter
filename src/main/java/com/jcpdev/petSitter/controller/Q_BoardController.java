@@ -116,9 +116,6 @@ public class Q_BoardController {
 	//글쓰기 - 저장   : save()메소드  리다이렉트 list로.
 	@RequestMapping(value="/q_save")
 	public String save(@ModelAttribute Q_Board dto) {   
-		
-		System.out.println("ㅎㅇ : " + dto);
-		
 		service.insert(dto);
 		
 		return "redirect:q_list";
